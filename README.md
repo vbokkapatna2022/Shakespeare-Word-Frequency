@@ -1,18 +1,33 @@
-# 📖 Shakespeare Word Frequency (C++ + BRIDGES API) — by **Venu Bokkapatna**
+# Shakespeare Word Frequency
 
-This C++ program loads a random Shakespeare work via the BRIDGES API and prints the **Top 10 most common words**.
+A C++ program that grabs a random Shakespeare work (play, poem, or sonnet) via the BRIDGES API and finds the 10 most frequently used words in it.
 
-## ✅ Features
-- 🎲 Randomly selects a Shakespeare play/poem from the dataset
-- 🧹 Cleans words (lowercase + alphanumeric only)
-- 📊 Counts word frequencies using a `map` and sorts by frequency (descending)
-- 🔟 Displays the Top 10 most common words
+I built this to practice text processing in C++ — cleaning raw text, counting frequencies with a map, and writing my own sort instead of relying on a library function.
 
-## 🛠 Technologies Used
+## What it does
+
+- Pulls a randomly selected Shakespeare work from the BRIDGES dataset each run
+- Cleans each word (strips punctuation, lowercases everything) before counting
+- Counts word frequency using `std::map`, with recursion handling the traversal
+- Sorts the results in descending order with a custom sort
+- Prints the Top 10 most common words
+
+## Built with
+
 - C++11
-- BRIDGES C++ API
-- libcurl (for HTTP requests)
+- [BRIDGES C++ API](https://bridgesuncc.github.io/)
+- libcurl (for the API's HTTP requests)
 
-## ⚙️ How to Compile
+## How to compile and run
+
 ```bash
 g++ -std=c++11 -Ibridges/include -Ibridges/include/data_src shakespeare.cpp bridges/lib/libbridges.a -lcurl -o run
+./run
+```
+
+You'll need `libcurl` installed and the BRIDGES library set up in a `bridges/` folder alongside this file.
+
+## Notes / things I'd improve
+
+- Since it picks a random work each run, results aren't reproducible — could add a way to specify which work to load
+- Common words like "the" and "and" dominate the list right now — filtering out stop words would surface more interesting results
